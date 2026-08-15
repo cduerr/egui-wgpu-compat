@@ -1,0 +1,12 @@
+egui-wgpu-compat
+Copyright 2026 Chris Duerr <chris@duerr.tech>
+
+This product includes software derived from egui-wgpu 0.33.3:
+https://github.com/emilk/egui/tree/0.33.3/crates/egui-wgpu
+
+egui and egui-wgpu are Copyright (c) 2018-2021 Emil Ernerfeldt and
+contributors, licensed under MIT OR Apache-2.0.
+
+The wgpu 28, 29, and 30 compatibility changes follow changes authored by
+egui contributors in commits 41b8f5f4, a59e803f, and 3fcadda5.
+

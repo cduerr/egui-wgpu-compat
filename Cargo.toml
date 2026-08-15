@@ -1,0 +1,47 @@
+[package]
+name = "egui-wgpu-compat"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+authors = ["Chris Duerr <chris@duerr.tech>"]
+description = "egui 0.33 renderer compatibility for wgpu 30"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/cduerr/egui-wgpu-compat"
+homepage = "https://github.com/cduerr/egui-wgpu-compat"
+readme = "README.md"
+categories = ["gui", "game-development", "rendering"]
+keywords = ["egui", "wgpu", "renderer", "compatibility"]
+include = [
+    "src/**/*.rs",
+    "src/**/*.wgsl",
+    "examples/**/*.rs",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "NOTICE",
+    "README.md",
+]
+
+[features]
+default = ["fragile-send-sync-non-atomic-wasm", "wgpu/default"]
+fragile-send-sync-non-atomic-wasm = ["wgpu/fragile-send-sync-non-atomic-wasm"]
+
+[dependencies]
+ahash = { version = "0.8.12", default-features = false, features = ["no-rng", "std"] }
+bytemuck = "1.24.0"
+egui = { version = "0.33.3", default-features = false }
+epaint = { version = "0.33.3", default-features = false, features = ["bytemuck"] }
+log = "0.4.28"
+profiling = { version = "1.0.17", default-features = false }
+type-map = "0.5.1"
+wgpu = { version = "30.0", default-features = false, features = ["std", "wgsl"] }
+
+[dev-dependencies]
+pollster = "0.4.0"
+
+[lints.rust]
+unsafe_code = "deny"
+
+[lints.clippy]
+all = "warn"
