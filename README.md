@@ -41,11 +41,16 @@ native wgpu texture.
 ## Scope
 
 The caller owns and configures the wgpu device, queue, surface, output texture,
-window, and event loop. Output format is selected when constructing `Renderer`;
-SDR formats and `Rgba16Float` are supported when the device supports them. This
-crate performs no HDR tone mapping and imposes no surface policy. Consider
-disabling `RendererOptions::dithering` for floating-point render targets because
-the inherited dithering path assumes an sRGB output.
+window, and event loop. Output format is selected when constructing `Renderer`.
+SDR formats are the intended output.
+
+`Rgba16Float` is accepted, but the inherited egui 0.33 shader treats it as a
+gamma-encoded framebuffer. It therefore produces gamma-encoded compatibility
+output, not linear HDR/scRGB output. HDR applications should render egui to an
+SDR intermediate and composite it into the HDR pipeline with an explicit color
+conversion and SDR-white mapping.
+
+This crate performs no HDR tone mapping and imposes no surface policy.
 
 The official crate's setup, capture, and optional winit painter modules are
 outside this crate's non-owning renderer scope. Renderer paint callbacks remain

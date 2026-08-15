@@ -29,17 +29,6 @@ async fn run() -> Result<(), Box<dyn std::error::Error>> {
     let format = TextureFormat::Rgba8Unorm;
     let mut renderer = Renderer::new(&device, format, RendererOptions::default());
 
-    // Floating-point output is also a renderer choice. Tone mapping remains
-    // the caller's responsibility.
-    let _float_renderer = Renderer::new(
-        &device,
-        TextureFormat::Rgba16Float,
-        RendererOptions {
-            dithering: false,
-            ..Default::default()
-        },
-    );
-
     // An ordinary egui-managed texture.
     let managed_id = TextureId::Managed(0);
     let managed_image = ColorImage::filled([2, 2], Color32::LIGHT_BLUE);
