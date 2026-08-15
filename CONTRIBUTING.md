@@ -14,8 +14,8 @@ cargo check --all-targets --all-features
 cargo test --all-targets --all-features
 cargo clippy --all-targets --all-features -- -D warnings
 cargo build --release --all-targets --all-features
+cargo test --features gpu-tests --test renderer
 ```
 
 Use short, imperative commit subjects (for example, “Document floating-point
 output”) and keep unrelated changes in separate commits.
-

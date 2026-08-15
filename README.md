@@ -73,3 +73,33 @@ Like egui, this project is available under either the MIT or Apache-2.0
 license. See NOTICE for attribution.
 
 Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Visual example
+
+Run the windowed showcase to inspect egui-managed and registered native
+textures, clipping, premultiplied-alpha blending, and live buffer updates:
+
+```console
+cargo run --example visual
+```
+
+## Renderer tests
+
+The opt-in GPU suite renders offscreen and reads the pixels back:
+
+```console
+cargo test --features gpu-tests --test renderer
+```
+
+It covers deterministic renderer snapshots, a full `egui::Context` pipeline at
+multiple scale factors, font-atlas uploads, tessellation, premultiplied alpha,
+clipping, managed and native textures, partial texture updates, native texture
+replacement, texture cleanup, and vertex/index buffer growth and reuse.
+
+Set `EGUI_WGPU_TEST_BACKEND` to `vulkan`, `dx12`, or `metal` to select a
+backend. Set `EGUI_WGPU_TEST_FORCE_FALLBACK=1` to request a software adapter.
+The committed snapshot can be regenerated intentionally with:
+
+```console
+EGUI_WGPU_UPDATE_SNAPSHOT=1 cargo test --features gpu-tests --test renderer
+```

@@ -15,6 +15,9 @@ include = [
     "src/**/*.rs",
     "src/**/*.wgsl",
     "examples/**/*.rs",
+    "tests/**/*.rs",
+    "tests/**/*.png",
+    "tests/**/*.rgba",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "LICENSE-APACHE",
@@ -26,6 +29,7 @@ include = [
 [features]
 default = ["fragile-send-sync-non-atomic-wasm", "wgpu/default"]
 fragile-send-sync-non-atomic-wasm = ["wgpu/fragile-send-sync-non-atomic-wasm"]
+gpu-tests = []
 
 [dependencies]
 ahash = { version = "0.8.12", default-features = false, features = ["no-rng", "std"] }
@@ -38,7 +42,10 @@ type-map = "0.5.1"
 wgpu = { version = "30.0", default-features = false, features = ["std", "wgsl"] }
 
 [dev-dependencies]
+egui = { version = "0.33.3", default-features = false, features = ["default_fonts"] }
+image = { version = "0.25.6", default-features = false, features = ["png"] }
 pollster = "0.4.0"
+winit = "0.30.13"
 
 [lints.rust]
 unsafe_code = "deny"
